@@ -10,8 +10,22 @@ import SwiftUI
 @main
 struct PointReaderApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+		WindowGroup {
+			AppView()
+		}
+		.windowToolbarStyle(DefaultWindowToolbarStyle())
+		.commands {
+			SidebarCommands()
+		}
     }
+}
+
+struct AppView: View {
+	var body: some View {
+		NavigationView {
+			InputBarView()
+			
+			CoordinateSystemView()
+		}
+	}
 }

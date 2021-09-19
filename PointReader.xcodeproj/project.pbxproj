@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09384726F70EBB0059CD3D /* PointReaderApp.swift */; };
-		7B09384A26F70EBB0059CD3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09384926F70EBB0059CD3D /* ContentView.swift */; };
+		7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */; };
 		7B09384C26F70EBE0059CD3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B09384B26F70EBE0059CD3D /* Assets.xcassets */; };
 		7B09384F26F70EBE0059CD3D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B09384E26F70EBE0059CD3D /* Preview Assets.xcassets */; };
 		7B09385B26F70EBE0059CD3D /* PointReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09385A26F70EBE0059CD3D /* PointReaderTests.swift */; };
 		7B09386626F70EBE0059CD3D /* PointReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09386526F70EBE0059CD3D /* PointReaderUITests.swift */; };
+		7B09387426F7110C0059CD3D /* InputBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09387326F7110C0059CD3D /* InputBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 /* Begin PBXFileReference section */
 		7B09384426F70EBB0059CD3D /* PointReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B09384726F70EBB0059CD3D /* PointReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReaderApp.swift; sourceTree = "<group>"; };
-		7B09384926F70EBB0059CD3D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSystemView.swift; sourceTree = "<group>"; };
 		7B09384B26F70EBE0059CD3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B09384E26F70EBE0059CD3D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B09385026F70EBE0059CD3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		7B09386126F70EBE0059CD3D /* PointReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B09386526F70EBE0059CD3D /* PointReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReaderUITests.swift; sourceTree = "<group>"; };
 		7B09386726F70EBE0059CD3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B09387326F7110C0059CD3D /* InputBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				7B09384726F70EBB0059CD3D /* PointReaderApp.swift */,
-				7B09384926F70EBB0059CD3D /* ContentView.swift */,
+				7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */,
+				7B09387326F7110C0059CD3D /* InputBarView.swift */,
 				7B09384B26F70EBE0059CD3D /* Assets.xcassets */,
 				7B09385026F70EBE0059CD3D /* Info.plist */,
 				7B09385126F70EBE0059CD3D /* PointReader.entitlements */,
@@ -261,7 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B09384A26F70EBB0059CD3D /* ContentView.swift in Sources */,
+				7B09387426F7110C0059CD3D /* InputBarView.swift in Sources */,
+				7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */,
 				7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
