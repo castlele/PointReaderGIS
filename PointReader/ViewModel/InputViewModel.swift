@@ -7,21 +7,6 @@
 
 import Foundation
 
-extension Array where Element: Equatable {
-	mutating func removeFirst(element: Element) {
-		var result = [Element]()
-		
-		for el in self {
-			if el != element {
-				result.append(el)
-				continue
-			}
-		}
-		
-		self = result
-	}
-}
-
 public typealias Coordinates = (x: String, y: String)
 
 // MARK: - InputViewModel

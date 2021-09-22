@@ -15,6 +15,7 @@ public let coordinateSpaceHeight = segmentHeight * 8
 struct CoordinateSystemView: View {
 	
 	@EnvironmentObject var inputVM: InputViewModel
+	@StateObject var geometryVM = GeometryViewModel()
 	
 	private let height = coordinateSpaceHeight
 	

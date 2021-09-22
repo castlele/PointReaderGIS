@@ -7,20 +7,6 @@
 
 import Foundation
 
-extension Array {
-	subscript(safe i: Int) -> Element? {
-		guard i < count else {
-			return nil
-		}
-		
-		guard i >= 0 else {
-			return nil
-		}
-		
-		return self[i]
-	}
-}
-
 struct ColorModel {
 	
 	private enum ColorsKit: String, CaseIterable {

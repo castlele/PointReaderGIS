@@ -18,6 +18,9 @@
 		7B0A00D026F877F400A4DD4C /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */; };
 		7B0A00D226F8780B00A4DD4C /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00D126F8780B00A4DD4C /* Dot.swift */; };
 		7B0A00D526F8788500A4DD4C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00D426F8788500A4DD4C /* Color.swift */; };
+		7B4EA07226FAF2CE00700F1E /* GeometryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */; };
+		7B4EA07526FAF30800700F1E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07426FAF30800700F1E /* Array.swift */; };
+		7B4EA07826FAF33100700F1E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07726FAF33100700F1E /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
 		7B0A00D126F8780B00A4DD4C /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		7B0A00D426F8788500A4DD4C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryViewModel.swift; sourceTree = "<group>"; };
+		7B4EA07426FAF30800700F1E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		7B4EA07726FAF33100700F1E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,7 @@
 		7B0A00CB26F85E3A00A4DD4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7B4EA07626FAF32600700F1E /* Extensions */,
 				7B0A00D126F8780B00A4DD4C /* Dot.swift */,
 				7B0A00D426F8788500A4DD4C /* Color.swift */,
 			);
@@ -166,9 +173,27 @@
 		7B0A00CC26F85E3E00A4DD4C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7B4EA07326FAF2EC00700F1E /* Extensions */,
 				7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */,
+				7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7B4EA07326FAF2EC00700F1E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7B4EA07426FAF30800700F1E /* Array.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7B4EA07626FAF32600700F1E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7B4EA07726FAF33100700F1E /* Array.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +329,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B4EA07826FAF33100700F1E /* Array.swift in Sources */,
 				7B09387426F7110C0059CD3D /* InspectorView.swift in Sources */,
 				7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */,
 				7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */,
+				7B4EA07226FAF2CE00700F1E /* GeometryViewModel.swift in Sources */,
 				7B0A00D226F8780B00A4DD4C /* Dot.swift in Sources */,
+				7B4EA07526FAF30800700F1E /* Array.swift in Sources */,
 				7B0A00D026F877F400A4DD4C /* InputViewModel.swift in Sources */,
 				7B0A00D526F8788500A4DD4C /* Color.swift in Sources */,
 			);
