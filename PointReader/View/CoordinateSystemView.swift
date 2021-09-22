@@ -38,6 +38,7 @@ struct CoordinateSystemView: View {
 			.frame(width: height, height: height)
 			.overlay(
 				Path { path in
+					// OX and OY
 					path.move(to: CGPoint(x: 0, y: height / 2))
 					path.addLine(to: CGPoint(x: height, y: height / 2))
 					
@@ -50,6 +51,24 @@ struct CoordinateSystemView: View {
 				GeometryReader { _ in
 					ForEach(inputVM.dots) { dot in
 						DotView(dot)
+					}
+					ForEach(inputVM.dots) { dot in
+						Path { path in
+							if let lineEnd = dot.correspondingLineEnd {
+								path.move(to: dot.getCGPoint())
+								path.addLine(to: lineEnd.getCGPoint())
+							}
+						}
+						.stroke(
+							Color.black,
+							style: .init(
+								lineWidth: 2,
+								lineCap: .round,
+								lineJoin: .round,
+								miterLimit: 10,
+								dash: [],
+								dashPhase: 0)
+						)
 					}
 				}
 			)

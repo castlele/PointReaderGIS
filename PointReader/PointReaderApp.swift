@@ -18,7 +18,6 @@ struct PointReaderApp: App {
 				.frame(maxWidth: NSScreen.main?.frame.width, minHeight: coordinateSpaceHeight + 5)
 				.environmentObject(inputVM)
 		}
-		.windowToolbarStyle(DefaultWindowToolbarStyle())
 		.commands {
 			SidebarCommands()
 		}
@@ -40,8 +39,8 @@ fileprivate struct AppView: View {
 			
 			CoordinateSystemView()
 				.frame(width: coordinateSpaceHeight + 1, height: coordinateSpaceHeight + 1)
+				.navigationViewStyle(DefaultNavigationViewStyle())
 		}
-		.navigationViewStyle(DefaultNavigationViewStyle())
 	}
 	
 	private func toggleSidebar() {

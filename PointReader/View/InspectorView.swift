@@ -11,17 +11,28 @@ import SwiftUI
 struct InspectorView: View {
 	
 	@EnvironmentObject var inputVM: InputViewModel
-	@State var coordinates = ("", "")
+	@State var coordinates: Coordinates = ("", "")
 	
     var body: some View {
-		VStack {
-			InputDotCoordinatesView(text: "Enter coordinates", coordinates: $coordinates, onSubmit: inputVM.onSubmit(coordinates:))
-				.padding(.horizontal)
-				.animation(.easeOut)
+		List {
+			Section(header: Text("Dot")) {
+				InputDotCoordinatesView(text: "Enter coordinates", coordinates: $coordinates)
+					.padding(.horizontal)
+					.animation(.easeOut)
+			}
 			
+			Section(header: Text("Line")) {
+				InputLineCoordinatesView()
+					.padding(.horizontal)
+					.animation(.easeOut)
+			}
+						
 			Spacer()
 			
 			ListOfGeometryObjects(dots: $inputVM.dots, onDelete: inputVM.onDelete(dot:))
+				.frame(minHeight: 500)
+				.background(Color.white)
+				.clipShape(RoundedRectangle(cornerRadius: 10))
 		}
     }
 }
@@ -29,15 +40,14 @@ struct InspectorView: View {
 // MARK: - InputDotCoordinatesView
 fileprivate struct InputDotCoordinatesView: View {
 	
+	@EnvironmentObject var inputVM: InputViewModel
 	var text: String
-	@Binding var coordinates: (String, String)
-	var onSubmit: (((String, String)) -> Void)
+	@Binding var coordinates: Coordinates
 	
 	var body: some View {
 		VStack {
 			HStack {
 				Text(text)
-					.font(.title2)
 					.fixedSize()
 				
 				TextField("x", text: $coordinates.0)
@@ -46,18 +56,18 @@ fileprivate struct InputDotCoordinatesView: View {
 				TextField("y", text: $coordinates.1)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
 			}
-			if !coordinates.0.isEmpty, !coordinates.1.isEmpty {
-				HStack {
-					Spacer()
-					
-					Button("Add dot") {
-						withAnimation(.easeOut) {
-							onSubmit(coordinates)
-							coordinates = ("", "")
-						}
+			
+			HStack {
+				Spacer()
+				
+				Button("Add dot") {
+					withAnimation(.easeOut) {
+						inputVM.onSubmit(coordinates: coordinates)
+						coordinates = ("", "")
 					}
-					.keyboardShortcut(.defaultAction)
 				}
+				.keyboardShortcut(.defaultAction)
+				.disabled(!inputVM.isCoordinatesValid(coordinates))
 			}
 		}
 	}
@@ -70,7 +80,7 @@ fileprivate struct ListOfGeometryObjects: View {
 	var onDelete: ((Dot) -> Void)
 	
 	// MARK: - DotDescriptionRow
-	private struct DotDescriptionRow: View {
+	fileprivate struct DotDescriptionRow: View {
 		
 		let dot: Dot
 		
@@ -112,6 +122,8 @@ fileprivate struct ListOfGeometryObjects: View {
 					.padding(.horizontal, 2)
 					.padding(.vertical, 5)
 					.clipShape(RoundedRectangle(cornerRadius: 8))
+				
+				Divider()
 			}
 		}
 	}
@@ -119,9 +131,47 @@ fileprivate struct ListOfGeometryObjects: View {
 
 // MARK: - InputLineCoordinates
 fileprivate struct InputLineCoordinatesView: View {
+	
+	@EnvironmentObject var inputVM: InputViewModel
+	
 	var body: some View {
 		VStack {
+			HStack {
+				Text("Connect the dots")
+					.fixedSize()
+				
+				Spacer()
+				
+				Picker("First dot", selection: $inputVM.lineEndA) {
+					ForEach(inputVM.dots.filter { $0 != inputVM.lineEndB }, id: \.self) { dot in
+						Text("\(dot.x, specifier: "%.2f"); \(dot.y, specifier: "%.2f")")
+							.foregroundColor(Color(dot.color))
+					}
+				}
+				.labelsHidden()
+				.pickerStyle(RadioGroupPickerStyle())
+				
+				Picker("Second dot", selection: $inputVM.lineEndB) {
+					ForEach(inputVM.dots.filter { $0 != inputVM.lineEndA }, id: \.self) { dot in
+						Text("\(dot.x, specifier: "%.2f"); \(dot.y, specifier: "%.2f")")
+							.foregroundColor(Color(dot.color))
+					}
+				}
+				.labelsHidden()
+				.pickerStyle(RadioGroupPickerStyle())
+			}
 			
+			HStack {
+				Spacer()
+				
+				Button("Add Line") {
+					withAnimation(.easeOut) {
+						inputVM.onAddLine()
+					}
+				}
+				.keyboardShortcut(.defaultAction)
+				.disabled(true)
+			}
 		}
 	}
 }
