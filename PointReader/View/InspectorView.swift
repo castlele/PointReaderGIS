@@ -11,12 +11,11 @@ import SwiftUI
 struct InspectorView: View {
 	
 	@EnvironmentObject var inputVM: InputViewModel
-	@State var coordinates: Coordinates = ("", "")
 	
     var body: some View {
 		List {
 			Section(header: Text("Dot")) {
-				InputDotCoordinatesView(text: "Enter coordinates", coordinates: $coordinates)
+				InputDotCoordinatesView(controllsType: .default)
 					.padding(.horizontal)
 					.animation(.easeOut)
 			}
@@ -38,11 +37,18 @@ struct InspectorView: View {
 }
 
 // MARK: - InputDotCoordinatesView
-fileprivate struct InputDotCoordinatesView: View {
+struct InputDotCoordinatesView: View {
 	
 	@EnvironmentObject var inputVM: InputViewModel
 	var text: String
-	@Binding var coordinates: Coordinates
+	@State var coordinates: Coordinates
+	var controllsType: ControllsType
+	var onSubmit: (() -> Void)?
+	var onCancel: (() -> Void)?
+	
+	enum ControllsType {
+		case `default`, cancel
+	}
 	
 	var body: some View {
 		VStack {
@@ -50,26 +56,88 @@ fileprivate struct InputDotCoordinatesView: View {
 				Text(text)
 					.fixedSize()
 				
-				TextField("x", text: $coordinates.0)
+				TextField("x", text: $coordinates.x)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
 				
-				TextField("y", text: $coordinates.1)
+				TextField("y", text: $coordinates.y)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
 			}
 			
-			HStack {
-				Spacer()
-				
-				Button("Add dot") {
-					withAnimation(.easeOut) {
-						inputVM.onSubmit(coordinates: coordinates)
-						coordinates = ("", "")
-					}
-				}
-				.keyboardShortcut(.defaultAction)
-				.disabled(!inputVM.isCoordinatesValid(coordinates))
+			controlls
+		}
+	}
+	
+	var controlls: some View {
+		Group {
+			switch controllsType {
+				case .default:
+					defaultControlls
+				case .cancel:
+					cancelControlls
 			}
 		}
+	}
+	
+	var defaultControlls: some View {
+		HStack {
+			Spacer()
+			
+			Button("Add dot") {
+				withAnimation(.easeOut) {
+					inputVM.onSubmit(coordinates: coordinates)
+					coordinates = ("", "")
+					
+					onSubmit?()
+				}
+			}
+			.keyboardShortcut(.defaultAction)
+			.disabled(!inputVM.isCoordinatesValid(coordinates))
+		}
+	}
+	
+	var cancelControlls: some View {
+		HStack {
+			Button("Cancel") {
+				withAnimation(.easeOut) {
+					onCancel?()
+				}
+			}
+			.keyboardShortcut(.cancelAction)
+			
+			Spacer()
+			
+			Button("Add dot") {
+				withAnimation(.easeOut) {
+					inputVM.onSubmit(coordinates: coordinates)
+					
+					onSubmit?()
+				}
+			}
+			.keyboardShortcut(.defaultAction)
+			.disabled(!inputVM.isCoordinatesValid(coordinates))
+		}
+	}
+	
+	init(
+		text: String = "Enter coordinates",
+		coordinates: Coordinates = ("", ""),
+		controllsType: ControllsType = .default,
+		onSubmit: (() -> Void)? = nil,
+		onCancel: (() -> Void)? = nil
+	) {
+		self.text = text
+		self.coordinates = coordinates
+		self.controllsType = controllsType
+		self.onSubmit = onSubmit
+		self.onCancel = onCancel
+	}
+}
+
+extension InputDotCoordinatesView: Equatable {
+	static func == (lhs: InputDotCoordinatesView, rhs: InputDotCoordinatesView) -> Bool {
+		let xExp = lhs.coordinates.x == rhs.coordinates.x
+		let yExp = lhs.coordinates.y == rhs.coordinates.y
+		return xExp && yExp
 	}
 }
 

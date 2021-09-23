@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Dot: Identifiable {
+final class Dot: CartesianConvertable, Identifiable {
 	
 	let id = UUID()
 	
@@ -31,13 +31,9 @@ final class Dot: Identifiable {
 	var cartesianX: CGFloat { determineOffset(x: x) }
 	var cartesianY: CGFloat { determineOffset(y: y) }
 	
-	private let dotCenter = dotRadius / 2 - 0.25
+	var objectOffset = dotRadius / 2 - 0.25
 	
 	func getCGPoint() -> CGPoint { CGPoint(x: cartesianX, y: cartesianY) }
-	
-	private func determineOffset(x: CGFloat) -> CGFloat { coordinateSpaceHeight / 2 + (x * squareHeight) - dotCenter }
-	
-	private func determineOffset(y: CGFloat) -> CGFloat { coordinateSpaceHeight / 2 - (y * squareHeight) - dotCenter }
 }
 
 extension Dot: Equatable, Hashable {

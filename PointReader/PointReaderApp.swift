@@ -25,6 +25,7 @@ struct PointReaderApp: App {
 }
 
 fileprivate struct AppView: View {
+	
 	var body: some View {
 		NavigationView {
 			InspectorView()
@@ -36,11 +37,17 @@ fileprivate struct AppView: View {
 					}
 					.keyboardShortcut(KeyEquivalent("C"))
 				}
+				.onHover { isInside in
+					MouseLocation.setUpCursor(to: .inspector, isInside: isInside)
+				}
 			
 			CoordinateSystemView()
 				.frame(width: coordinateSpaceHeight + 1, height: coordinateSpaceHeight + 1)
-				.navigationViewStyle(DefaultNavigationViewStyle())
+				.onHover { isInside in
+					MouseLocation.setUpCursor(to: .coordinateSystem, isInside: isInside)
+				}
 		}
+		.navigationViewStyle(DefaultNavigationViewStyle())
 	}
 	
 	private func toggleSidebar() {

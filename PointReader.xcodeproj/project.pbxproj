@@ -14,13 +14,14 @@
 		7B09385B26F70EBE0059CD3D /* ColorModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09385A26F70EBE0059CD3D /* ColorModelTests.swift */; };
 		7B09386626F70EBE0059CD3D /* PointReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09386526F70EBE0059CD3D /* PointReaderUITests.swift */; };
 		7B09387426F7110C0059CD3D /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09387326F7110C0059CD3D /* InspectorView.swift */; };
+		7B098DBD26FBAC2C002BAC6B /* MouseLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B098DBC26FBAC2C002BAC6B /* MouseLocation.swift */; };
+		7B098DBF26FBB891002BAC6B /* MouseLocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */; };
 		7B0A00CE26F8644B00A4DD4C /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00CD26F8644B00A4DD4C /* InputViewModel.swift */; };
 		7B0A00D026F877F400A4DD4C /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */; };
 		7B0A00D226F8780B00A4DD4C /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00D126F8780B00A4DD4C /* Dot.swift */; };
 		7B0A00D526F8788500A4DD4C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A00D426F8788500A4DD4C /* Color.swift */; };
 		7B4EA07226FAF2CE00700F1E /* GeometryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */; };
 		7B4EA07526FAF30800700F1E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07426FAF30800700F1E /* Array.swift */; };
-		7B4EA07826FAF33100700F1E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA07726FAF33100700F1E /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,13 +56,14 @@
 		7B09386526F70EBE0059CD3D /* PointReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReaderUITests.swift; sourceTree = "<group>"; };
 		7B09386726F70EBE0059CD3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B09387326F7110C0059CD3D /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
+		7B098DBC26FBAC2C002BAC6B /* MouseLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseLocation.swift; sourceTree = "<group>"; };
+		7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseLocationTracker.swift; sourceTree = "<group>"; };
 		7B0A00CD26F8644B00A4DD4C /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
 		7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
 		7B0A00D126F8780B00A4DD4C /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		7B0A00D426F8788500A4DD4C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryViewModel.swift; sourceTree = "<group>"; };
 		7B4EA07426FAF30800700F1E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		7B4EA07726FAF33100700F1E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */,
 				7B09387326F7110C0059CD3D /* InspectorView.swift */,
+				7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,7 +166,6 @@
 		7B0A00CB26F85E3A00A4DD4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7B4EA07626FAF32600700F1E /* Extensions */,
 				7B0A00D126F8780B00A4DD4C /* Dot.swift */,
 				7B0A00D426F8788500A4DD4C /* Color.swift */,
 			);
@@ -176,6 +178,7 @@
 				7B4EA07326FAF2EC00700F1E /* Extensions */,
 				7B0A00CF26F877F400A4DD4C /* InputViewModel.swift */,
 				7B4EA07126FAF2CE00700F1E /* GeometryViewModel.swift */,
+				7B098DBC26FBAC2C002BAC6B /* MouseLocation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -184,14 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				7B4EA07426FAF30800700F1E /* Array.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7B4EA07626FAF32600700F1E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7B4EA07726FAF33100700F1E /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,14 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B4EA07826FAF33100700F1E /* Array.swift in Sources */,
 				7B09387426F7110C0059CD3D /* InspectorView.swift in Sources */,
+				7B098DBF26FBB891002BAC6B /* MouseLocationTracker.swift in Sources */,
 				7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */,
 				7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */,
 				7B4EA07226FAF2CE00700F1E /* GeometryViewModel.swift in Sources */,
 				7B0A00D226F8780B00A4DD4C /* Dot.swift in Sources */,
 				7B4EA07526FAF30800700F1E /* Array.swift in Sources */,
 				7B0A00D026F877F400A4DD4C /* InputViewModel.swift in Sources */,
+				7B098DBD26FBAC2C002BAC6B /* MouseLocation.swift in Sources */,
 				7B0A00D526F8788500A4DD4C /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -480,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;

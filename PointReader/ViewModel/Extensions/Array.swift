@@ -19,3 +19,17 @@ extension Array where Element: Equatable {
 		self = result
 	}
 }
+
+extension Array {
+	subscript(safe i: Int) -> Element? {
+		guard i < count else {
+			return nil
+		}
+		
+		guard i >= 0 else {
+			return nil
+		}
+		
+		return self[i]
+	}
+}
