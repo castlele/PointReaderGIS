@@ -7,20 +7,19 @@
 
 import Foundation
 
+extension CGFloat {
+	init?(_ strNum: String) {
+		guard let doubleNum = Double(strNum) else {
+			return nil
+		}
+		self.init(doubleNum)
+	}
+}
+
 public typealias Coordinates = (x: String, y: String)
 
 // MARK: - InputViewModel
 final class InputViewModel: ObservableObject {
-	
-	@Published var dotCoordinates: Coordinates = ("", "") {
-		willSet(newCords) {
-			guard let newDot = convert(coordinates: newCords) else {
-				return
-			}
-			
-			dots.append(newDot)
-		}
-	}
 	
 	@Published var dots: [Dot] = []
 	@Published var lineEndA = Dot(x: 0.0, y: 0.0, color: "red")
@@ -39,8 +38,12 @@ final class InputViewModel: ObservableObject {
 		return isConvertable(coordinates: coordinates)
 	}
 	
-	func onSubmit(coordinates: (String, String)) {
-		dotCoordinates = coordinates
+	func onSubmit(coordinates: Coordinates, name: String, color: String) {
+		guard let numbercalCords = convert(coordinates: coordinates) else {
+			return
+		}
+		let dot = makeDot(withName: name, color: color, coordinates: numbercalCords)
+		dots.append(dot)
 	}
 	
 	func onAddLine() {
@@ -59,15 +62,16 @@ final class InputViewModel: ObservableObject {
 		return true
 	}
 	
-	private func convert(coordinates: Coordinates) -> Dot? {
-		guard let x = Double(coordinates.x),
-			  let y = Double(coordinates.y) else {
+	private func convert(coordinates: Coordinates) -> NumericalCoordinates? {
+		guard let x = CGFloat(coordinates.x),
+			  let y = CGFloat(coordinates.y) else {
 			return nil
 		}
-		
-		let color = ColorModel.getColor(for: dots.count)
-		let dot = Dot(x: x, y: y, color: color)
-		
+		return (x, y)
+	}
+	
+	private func makeDot(withName name: String, color: String, coordinates cords: NumericalCoordinates) -> Dot {
+		let dot = Dot(name: name, coordinates: cords, color: color)
 		return dot
 	}
 }

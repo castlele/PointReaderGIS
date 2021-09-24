@@ -10,7 +10,7 @@ import Foundation
 struct ColorModel {
 	
 	private enum ColorsKit: String, CaseIterable {
-		case red, green, blue, yellow, brown, purple, pink, orange
+		case red, green, blue, brown, purple, pink, orange
 		
 		init(colorIndex: Int) {
 			let allCases = ColorsKit.allCases
@@ -26,17 +26,9 @@ struct ColorModel {
 		}
 	}
 	
-	private var colorIndex: Int
-	
-	init(colorIndex: Int) {
-		self.colorIndex = colorIndex
-	}
-	
-	init() {
-		self.colorIndex = 0
-	}
-	
-	var color: String { Self.getColor(for: colorIndex) }
+	static var colors: [String] = {
+		ColorsKit.allCases.map { $0.rawValue }
+	}()
 	
 	static func getColor(for index: Int) -> String {
 		let kit = ColorsKit(colorIndex: index)

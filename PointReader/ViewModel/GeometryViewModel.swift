@@ -36,10 +36,10 @@ extension CartesianConvertable {
 	}
 }
 
+typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
+
 // MARK: - GeometryViewModel
 final class GeometryViewModel: ObservableObject, CartesianConvertable {
-	
-	private typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
 	
 	var objectOffset = dotRadius / 2 - 0.25
 	

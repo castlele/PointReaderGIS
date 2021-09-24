@@ -11,6 +11,7 @@ final class Dot: CartesianConvertable, Identifiable {
 	
 	let id = UUID()
 	
+	let name: String
 	let x: CGFloat
 	let y: CGFloat
 	
@@ -18,14 +19,15 @@ final class Dot: CartesianConvertable, Identifiable {
 	
 	var correspondingLineEnd: Dot? = nil
 	
-	init(x: CGFloat, y: CGFloat, color: String) {
+	init(name: String = "dot", x: CGFloat, y: CGFloat, color: String) {
+		self.name = name
 		self.x = CGFloat(x)
 		self.y = CGFloat(y)
 		self.color = color
 	}
 	
-	convenience init(x: Double, y: Double, color: String) {
-		self.init(x: CGFloat(x), y: CGFloat(y), color: color)
+	convenience init(name: String = "dot", coordinates cords: NumericalCoordinates, color: String) {
+		self.init(name: name, x: cords.x, y: cords.y, color: color)
 	}
 	
 	var cartesianX: CGFloat { determineOffset(x: x) }

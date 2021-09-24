@@ -50,11 +50,31 @@ struct InputDotCoordinatesView: View {
 		case `default`, cancel
 	}
 	
+	@State private var name = ""
+	@State private var color = ColorModel.colors[0]
+	
 	var body: some View {
 		VStack {
-			HStack {
-				Text(text)
-					.fixedSize()
+			Text(text)
+				.fixedSize()
+			
+			LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+				
+				HStack {
+					Circle()
+						.fill(Color(color))
+						.frame(width: 10, height: 10)
+					
+					Picker("Color", selection: $color) {
+						ForEach(ColorModel.colors, id: \.self) { color in
+							Text(color.capitalized)
+						}
+					}
+					.labelsHidden()
+				}
+								
+				TextField("Name", text: $name)
+					.textFieldStyle(RoundedBorderTextFieldStyle())
 				
 				TextField("x", text: $coordinates.x)
 					.textFieldStyle(RoundedBorderTextFieldStyle())
@@ -78,48 +98,49 @@ struct InputDotCoordinatesView: View {
 		}
 	}
 	
-	var defaultControlls: some View {
+	private var defaultControlls: some View {
 		HStack {
 			Spacer()
 			
-			Button("Add dot") {
-				withAnimation(.easeOut) {
-					inputVM.onSubmit(coordinates: coordinates)
-					coordinates = ("", "")
-					
-					onSubmit?()
-				}
-			}
-			.keyboardShortcut(.defaultAction)
-			.disabled(!inputVM.isCoordinatesValid(coordinates))
+			addButton
 		}
 	}
 	
-	var cancelControlls: some View {
+	private var cancelControlls: some View {
 		HStack {
-			Button("Cancel") {
-				withAnimation(.easeOut) {
-					onCancel?()
-				}
-			}
-			.keyboardShortcut(.cancelAction)
+			cancelButton
 			
 			Spacer()
 			
-			Button("Add dot") {
-				withAnimation(.easeOut) {
-					inputVM.onSubmit(coordinates: coordinates)
-					
-					onSubmit?()
-				}
-			}
-			.keyboardShortcut(.defaultAction)
-			.disabled(!inputVM.isCoordinatesValid(coordinates))
+			addButton
 		}
+	}
+		
+	private var addButton: some View {
+		Button("Add dot") {
+			withAnimation(.easeOut) {
+				inputVM.onSubmit(coordinates: coordinates, name: name, color: color)
+				coordinates = ("", "")
+				name = ""
+				
+				onSubmit?()
+			}
+		}
+		.keyboardShortcut(.defaultAction)
+		.disabled(!inputVM.isCoordinatesValid(coordinates))
+	}
+		
+	private var cancelButton: some View {
+		Button("Cancel") {
+			withAnimation(.easeOut) {
+				onCancel?()
+			}
+		}
+		.keyboardShortcut(.cancelAction)
 	}
 	
 	init(
-		text: String = "Enter coordinates",
+		text: String = "Dot settings",
 		coordinates: Coordinates = ("", ""),
 		controllsType: ControllsType = .default,
 		onSubmit: (() -> Void)? = nil,
@@ -159,7 +180,7 @@ fileprivate struct ListOfGeometryObjects: View {
 						.fill(Color(dot.color))
 						.frame(width: 13, height: 13)
 					
-					Text("Type: Dot")
+					Text("Dot: \(dot.name)")
 						.font(.title2)
 						.fixedSize()
 				}
