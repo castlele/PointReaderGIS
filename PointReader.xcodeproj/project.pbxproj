@@ -179,7 +179,6 @@
 				7B98821B2701B01A00139A63 /* GeometryObjects */,
 				7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */,
 				7B09387326F7110C0059CD3D /* InspectorView.swift */,
-				7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +229,7 @@
 				7B9882252701B4C600139A63 /* InputViewFactory.swift */,
 				7B9882212701B22500139A63 /* InputDotView.swift */,
 				7B9882232701B28900139A63 /* InputLineView.swift */,
+				7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
