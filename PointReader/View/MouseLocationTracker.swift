@@ -9,22 +9,7 @@ import SwiftUI
 
 extension View {
 	func trackingMouseLocation(onTrack: @escaping ((CGPoint) -> Void)) -> some View {
-		MouseLocationTracker(onTrack: onTrack) { self }
-	}
-}
-
-// MARK: - MouseLocationTracker
-fileprivate struct MouseLocationTracker<Content: View>: View {
-	let onTrack: ((CGPoint) -> Void)
-	let content: () -> Content
-	
-	init(onTrack: @escaping ((CGPoint) -> Void), @ViewBuilder content: @escaping () -> Content) {
-		self.onTrack = onTrack
-		self.content = content
-	}
-	
-	var body: some View {
-		TrackingAreaRepresentable(onTrack: onTrack, content: content())
+		TrackingAreaRepresentable(onTrack: onTrack) { self }
 	}
 }
 
@@ -33,6 +18,11 @@ fileprivate struct TrackingAreaRepresentable<Content: View>: NSViewRepresentable
 	
 	let onTrack: ((CGPoint) -> Void)
 	let content: Content
+	
+	init(onTrack: @escaping ((CGPoint) -> Void), @ViewBuilder content: @escaping () -> Content) {
+		self.onTrack = onTrack
+		self.content = content()
+	}
 	
 	func makeNSView(context: Context) -> NSHostingView<Content> {
 		TrackingNSHostingView(onTrack: onTrack, rootView: content)

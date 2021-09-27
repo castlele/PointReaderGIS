@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias Coordinates = (x: String, y: String)
+typealias Coordinates = (x: String, y: String)
 typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
 
 protocol GeometryObject {

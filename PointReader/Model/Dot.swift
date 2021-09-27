@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Dot: Identifiable {
+final class Dot: GeometryObject {
 	
 	let id = UUID()
 	
@@ -39,20 +39,3 @@ final class Dot: Identifiable {
 }
 
 extension Dot: CartesianConvertable { }
-
-extension Dot: GeometryObject {}
-
-extension Dot: Equatable, Hashable {
-	
-	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(name)\(id)\(x)\(y)")
-	}
-	
-	static func == (lhs: Dot, rhs: Dot) -> Bool {
-		let xExp = lhs.x == rhs.x
-		let yExp = lhs.y == rhs.y
-		let colorExp = lhs.color == rhs.color
-		
-		return xExp && yExp && colorExp
-	}
-}

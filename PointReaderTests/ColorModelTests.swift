@@ -15,16 +15,4 @@ class ColorModelTests: XCTestCase {
 	override func tearDown() {
 		colorModel = nil
 	}
-	
-	func testColorModelInitWithinColorsKitCount() throws {
-		colorModel = ColorModel(colorIndex: 0)
-		
-		XCTAssertEqual(colorModel.color, "red")
-	}
-	
-	func testColorModelInitOutsideColorsKitCount() throws {
-		colorModel = ColorModel(colorIndex: 12)
-		
-		XCTAssertEqual(colorModel.color, "brown")
-	}
 }

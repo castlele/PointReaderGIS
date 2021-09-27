@@ -6,7 +6,6 @@
 //
 
 extension Array {
-//	map<T>(_ transform: ((offset: Int, element: Base.Element)) throws -> T) rethrows -> [T]
 	mutating func removeFirst(element: Element, compareBy: @escaping ((Element, Element) -> Bool)) {
 		var result = [Element]()
 		

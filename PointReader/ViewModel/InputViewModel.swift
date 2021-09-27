@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-extension CGFloat {
-	init?(_ strNum: String) {
-		guard let doubleNum = Double(strNum) else {
-			return nil
-		}
-		self.init(doubleNum)
-	}
-}
-
 // MARK: - InputViewModel
 final class InputViewModel: ObservableObject {
 	
