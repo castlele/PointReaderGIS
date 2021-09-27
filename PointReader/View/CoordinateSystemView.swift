@@ -70,23 +70,11 @@ struct CoordinateSystemView: View {
 						}
 					}
 					
-					if inputVM.isDotAddingView {
+					if inputVM.addingMode != .none {
 						GeometryReader { geometry in
 							
 							//MARK: - InputDotCoordinatesView
-							InputDotCoordinatesView(
-								coordinates: ("\(geometryVM.lastTapped.x)", "\(geometryVM.lastTapped.y)"),
-								controllsType: .cancel,
-								onSubmit: {
-									inputVM.isDotAddingView.toggle()
-								}, onCancel: {
-									inputVM.isDotAddingView.toggle()
-								})
-								.padding(5)
-								.frame(maxWidth: 300)
-								.background(Color.init(red: 0.9255852103, green: 0.9175997376, blue: 0.9215269089))
-								.clipShape(RoundedRectangle(cornerRadius: 8))
-								.opacity(inputVM.isDotAddingView ? 1 : 0)
+							inputVM.inputView
 								.offset(x: geometry.size.width / 2 - 150, y: geometry.size.height * 1/3 )
 						}
 					}
@@ -94,12 +82,7 @@ struct CoordinateSystemView: View {
 					GeometryReader { _ in
 						// MARK: - Geometry objects showing
 						ForEach(inputVM.objects, id: \.id) { obj in
-							switch obj {
-								case let dot as Dot:
-									DotView(dot)
-								default:
-									EmptyView()
-							}
+							GeometryViewFactory.makeView(object: obj)
 						}
 					}
 				}
@@ -107,21 +90,41 @@ struct CoordinateSystemView: View {
 			// MARK: - Tool bar
 			.toolbar {
 				Button(action: {
-					inputVM.isDotAddingMode.toggle()
+					inputVM.addingMode = .dot
 					
 				}, label: {
 					Image(systemName: "dot.squareshape.split.2x2")
-						.foregroundColor(inputVM.isDotAddingMode ? .accentColor : nil)
+						.foregroundColor(inputVM.addingMode != .none ? .accentColor : nil)
 						.help("Add dot")
 				})
 				.keyboardShortcut("d", modifiers: [.shift, .option])
 			}
 		}
-		// MARK: - Tap to add a dot
+		// MARK: - Tap to add an geometry object
 		.onTapGesture {
-			if inputVM.isDotAddingMode {
-				inputVM.isDotAddingView.toggle()
+			if inputVM.addingMode != .none {
 				geometryVM.setLastTapped()
+				
+				var inputObjectType: InputViewFactory.InputObjectType? = nil
+				
+				switch inputVM.addingMode {
+					case .none:
+						break
+					case .dot:
+						inputObjectType = .dot(coordinates: $geometryVM.lastTapped) {
+							inputVM.addingMode = .none
+							inputVM.inputView = AnyView(EmptyView())
+						} onCancel: {
+							inputVM.addingMode = .none
+							inputVM.inputView = AnyView(EmptyView())
+						}
+				}
+				
+				guard let inputObjectType = inputObjectType else {
+					return
+				}
+				
+				inputVM.inputView = InputViewFactory.makeView(type: inputObjectType) as! AnyView
 			}
 		}
     }
@@ -146,22 +149,6 @@ private struct CoordinateSegment: Shape {
 		}
 		
 		return path
-	}
-}
-
-private struct DotView: View {
-	
-	var dot: Dot
-	
-	var body: some View {
-		Circle()
-			.fill(Color(dot.color))
-			.frame(width: dotRadius, height: dotRadius)
-			.offset(x: dot.cartesianX, y: dot.cartesianY)
-	}
-	
-	init(_ dot: Dot) {
-		self.dot = dot
 	}
 }
 

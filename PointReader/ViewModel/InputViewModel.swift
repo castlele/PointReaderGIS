@@ -5,7 +5,7 @@
 //  Created by Nikita Semenov on 20.09.2021.
 //
 
-import Foundation
+import SwiftUI
 
 extension CGFloat {
 	init?(_ strNum: String) {
@@ -19,9 +19,13 @@ extension CGFloat {
 // MARK: - InputViewModel
 final class InputViewModel: ObservableObject {
 	
+	enum AddingMode {
+		case none, dot
+	}
+	
+	@Published var inputView = AnyView(EmptyView())
 	@Published var objects: [GeometryObject] = []
-	@Published var isDotAddingMode = false
-	@Published var isDotAddingView = false
+	@Published var addingMode: AddingMode = .none
 	
 	func isCoordinatesValid(_ coordinates: Coordinates) -> Bool {
 		let x = coordinates.x
@@ -39,7 +43,9 @@ final class InputViewModel: ObservableObject {
 			return
 		}
 		
-		let dot = makeDot(withName: name, color: color, coordinates: numbercalCords)
+		let attributs: GeometryObjectFactory.Attributes = .dot(name: name, color: color, coordinates: numbercalCords)
+		let dot = GeometryObjectFactory.shared.makeObject(withAttributes: attributs)
+		
 		objects.append(dot)
 	}
 	
@@ -67,10 +73,5 @@ final class InputViewModel: ObservableObject {
 			return false
 		}
 		return true
-	}
-	
-	private func makeDot(withName name: String, color: String, coordinates cords: NumericalCoordinates) -> Dot {
-		let dot = Dot(name: name, coordinates: cords, color: color)
-		return dot
 	}
 }

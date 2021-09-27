@@ -15,13 +15,13 @@ struct InspectorView: View {
     var body: some View {
 		List {
 			Section(header: Text("Dot")) {
-				InputDotCoordinatesView(controllsType: .default)
+				InputDotView(controllsType: .default)
 					.padding(.horizontal)
 					.animation(.easeOut)
 			}
 			
 			Section(header: Text("Line")) {
-				InputLineCoordinatesView()
+				InputLineView()
 					.padding(.horizontal)
 					.animation(.easeOut)
 			}
@@ -34,132 +34,6 @@ struct InspectorView: View {
 				.clipShape(RoundedRectangle(cornerRadius: 10))
 		}
     }
-}
-
-// MARK: - InputDotCoordinatesView
-struct InputDotCoordinatesView: View {
-	
-	@EnvironmentObject var inputVM: InputViewModel
-	var text: String
-	@State var coordinates: Coordinates
-	var controllsType: ControllsType
-	var onSubmit: (() -> Void)?
-	var onCancel: (() -> Void)?
-	
-	enum ControllsType {
-		case `default`, cancel
-	}
-	
-	@State private var name = ""
-	@State private var color = ColorModel.colors[0]
-	
-	var body: some View {
-		VStack {
-			Text(text)
-				.fixedSize()
-			
-			LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
-				
-				HStack {
-					Circle()
-						.fill(Color(color))
-						.frame(width: 10, height: 10)
-					
-					Picker("Color", selection: $color) {
-						ForEach(ColorModel.colors, id: \.self) { color in
-							Text(color.capitalized)
-						}
-					}
-					.labelsHidden()
-				}
-								
-				TextField("Name", text: $name)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-				
-				TextField("x", text: $coordinates.x)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-				
-				TextField("y", text: $coordinates.y)
-					.textFieldStyle(RoundedBorderTextFieldStyle())
-			}
-			
-			controlls
-		}
-	}
-	
-	var controlls: some View {
-		Group {
-			switch controllsType {
-				case .default:
-					defaultControlls
-				case .cancel:
-					cancelControlls
-			}
-		}
-	}
-	
-	private var defaultControlls: some View {
-		HStack {
-			Spacer()
-			
-			addButton
-		}
-	}
-	
-	private var cancelControlls: some View {
-		HStack {
-			cancelButton
-			
-			Spacer()
-			
-			addButton
-		}
-	}
-		
-	private var addButton: some View {
-		Button("Add dot") {
-			withAnimation(.easeOut) {
-				inputVM.onSubmitButton(coordinates: coordinates, name: name, color: color)
-				coordinates = ("", "")
-				name = ""
-				
-				onSubmit?()
-			}
-		}
-		.keyboardShortcut(.defaultAction)
-		.disabled(!inputVM.isCoordinatesValid(coordinates))
-	}
-		
-	private var cancelButton: some View {
-		Button("Cancel") {
-			withAnimation(.easeOut) {
-				onCancel?()
-			}
-		}
-		.keyboardShortcut(.cancelAction)
-	}
-	
-	init(
-		text: String = "Dot settings",
-		coordinates: Coordinates = ("", ""),
-		controllsType: ControllsType = .default,
-		onSubmit: (() -> Void)? = nil,
-		onCancel: (() -> Void)? = nil
-	) {
-		self.text = text
-		self.coordinates = coordinates
-		self.controllsType = controllsType
-		self.onSubmit = onSubmit
-		self.onCancel = onCancel
-	}
-}
-
-extension InputDotCoordinatesView: Equatable {
-	static func == (lhs: InputDotCoordinatesView, rhs: InputDotCoordinatesView) -> Bool {
-		let xExp = lhs.coordinates.x == rhs.coordinates.x
-		let yExp = lhs.coordinates.y == rhs.coordinates.y
-		return xExp && yExp
-	}
 }
 
 // MARK: - ListOfGeometryObjects
@@ -215,37 +89,6 @@ fileprivate struct ListOfGeometryObjects: View {
 				}
 				
 				Divider()
-			}
-		}
-	}
-}
-
-// MARK: - InputLineCoordinates
-fileprivate struct InputLineCoordinatesView: View {
-	
-	@EnvironmentObject var inputVM: InputViewModel
-	
-	var body: some View {
-		VStack {
-			HStack {
-				Text("Connect the dots")
-					.fixedSize()
-				
-				Spacer()
-				
-				
-			}
-			
-			HStack {
-				Spacer()
-				
-				Button("Add Line") {
-					withAnimation(.easeOut) {
-						inputVM.onAddLine()
-					}
-				}
-				.keyboardShortcut(.defaultAction)
-				.disabled(true)
 			}
 		}
 	}
