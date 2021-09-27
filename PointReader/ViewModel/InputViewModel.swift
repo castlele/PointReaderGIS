@@ -20,9 +20,6 @@ extension CGFloat {
 final class InputViewModel: ObservableObject {
 	
 	@Published var objects: [GeometryObject] = []
-	@Published var dots: [Dot] = []
-	@Published var lineEndA = Dot(x: 0.0, y: 0.0, color: "red")
-	@Published var lineEndB = Dot(x: 0.0, y: 0.0, color: "red")
 	@Published var isDotAddingMode = false
 	@Published var isDotAddingView = false
 	

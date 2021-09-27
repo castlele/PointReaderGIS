@@ -233,23 +233,7 @@ fileprivate struct InputLineCoordinatesView: View {
 				
 				Spacer()
 				
-				Picker("First dot", selection: $inputVM.lineEndA) {
-					ForEach(inputVM.dots.filter { $0 != inputVM.lineEndB }, id: \.self) { dot in
-						Text("\(dot.x, specifier: "%.2f"); \(dot.y, specifier: "%.2f")")
-							.foregroundColor(Color(dot.color))
-					}
-				}
-				.labelsHidden()
-				.pickerStyle(RadioGroupPickerStyle())
 				
-				Picker("Second dot", selection: $inputVM.lineEndB) {
-					ForEach(inputVM.dots.filter { $0 != inputVM.lineEndA }, id: \.self) { dot in
-						Text("\(dot.x, specifier: "%.2f"); \(dot.y, specifier: "%.2f")")
-							.foregroundColor(Color(dot.color))
-					}
-				}
-				.labelsHidden()
-				.pickerStyle(RadioGroupPickerStyle())
 			}
 			
 			HStack {

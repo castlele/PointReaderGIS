@@ -101,26 +101,6 @@ struct CoordinateSystemView: View {
 									EmptyView()
 							}
 						}
-						
-						// MARK: - Lines showing
-						ForEach(inputVM.dots) { dot in
-							Path { path in
-								if let lineEnd = dot.correspondingLineEnd {
-									path.move(to: dot.getCGPoint())
-									path.addLine(to: lineEnd.getCGPoint())
-								}
-							}
-							.stroke(
-								Color.black,
-								style: .init(
-									lineWidth: 2,
-									lineCap: .round,
-									lineJoin: .round,
-									miterLimit: 10,
-									dash: [],
-									dashPhase: 0)
-							)
-						}
 					}
 				}
 			)
