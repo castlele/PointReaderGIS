@@ -28,7 +28,7 @@ struct InspectorView: View {
 						
 			Spacer()
 			
-			ListOfGeometryObjects(dots: $inputVM.dots, onDelete: inputVM.onDelete(dot:))
+			ListOfGeometryObjects()
 				.frame(minHeight: 500)
 				.background(Color.white)
 				.clipShape(RoundedRectangle(cornerRadius: 10))
@@ -119,7 +119,7 @@ struct InputDotCoordinatesView: View {
 	private var addButton: some View {
 		Button("Add dot") {
 			withAnimation(.easeOut) {
-				inputVM.onSubmit(coordinates: coordinates, name: name, color: color)
+				inputVM.onSubmitButton(coordinates: coordinates, name: name, color: color)
 				coordinates = ("", "")
 				name = ""
 				
@@ -165,8 +165,7 @@ extension InputDotCoordinatesView: Equatable {
 // MARK: - ListOfGeometryObjects
 fileprivate struct ListOfGeometryObjects: View {
 	
-	@Binding var dots: [Dot]
-	var onDelete: ((Dot) -> Void)
+	@EnvironmentObject var inputVM: InputViewModel
 	
 	// MARK: - DotDescriptionRow
 	fileprivate struct DotDescriptionRow: View {
@@ -197,18 +196,23 @@ fileprivate struct ListOfGeometryObjects: View {
 		
 	var body: some View {
 		List {
-			ForEach(dots) { dot in
-				DotDescriptionRow(dot: dot)
-					.contextMenu {
-						Button(action: {
-							onDelete(dot)
-						}, label: {
-							Text("Delete")
-						})
-					}
-					.padding(.horizontal, 2)
-					.padding(.vertical, 5)
-					.clipShape(RoundedRectangle(cornerRadius: 8))
+			ForEach(inputVM.objects, id: \.id) { obj in
+				switch obj {
+					case let dot as Dot:
+						DotDescriptionRow(dot: dot)
+							.contextMenu {
+								Button(action: {
+									inputVM.onDelete(object: dot)
+								}, label: {
+									Text("Delete")
+								})
+							}
+							.padding(.horizontal, 2)
+							.padding(.vertical, 5)
+							.clipShape(RoundedRectangle(cornerRadius: 8))
+					default:
+						EmptyView()
+				}
 				
 				Divider()
 			}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Dot: CartesianConvertable, Identifiable {
+final class Dot: Identifiable {
 	
 	let id = UUID()
 	
@@ -37,6 +37,10 @@ final class Dot: CartesianConvertable, Identifiable {
 	
 	func getCGPoint() -> CGPoint { CGPoint(x: cartesianX, y: cartesianY) }
 }
+
+extension Dot: CartesianConvertable { }
+
+extension Dot: GeometryObject {}
 
 extension Dot: Equatable, Hashable {
 	

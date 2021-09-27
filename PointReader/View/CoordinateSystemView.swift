@@ -92,9 +92,14 @@ struct CoordinateSystemView: View {
 					}
 					
 					GeometryReader { _ in
-						// MARK: - Dots showing
-						ForEach(inputVM.dots) { dot in
-							DotView(dot)
+						// MARK: - Geometry objects showing
+						ForEach(inputVM.objects, id: \.id) { obj in
+							switch obj {
+								case let dot as Dot:
+									DotView(dot)
+								default:
+									EmptyView()
+							}
 						}
 						
 						// MARK: - Lines showing

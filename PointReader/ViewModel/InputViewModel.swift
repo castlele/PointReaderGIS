@@ -16,11 +16,10 @@ extension CGFloat {
 	}
 }
 
-public typealias Coordinates = (x: String, y: String)
-
 // MARK: - InputViewModel
 final class InputViewModel: ObservableObject {
 	
+	@Published var objects: [GeometryObject] = []
 	@Published var dots: [Dot] = []
 	@Published var lineEndA = Dot(x: 0.0, y: 0.0, color: "red")
 	@Published var lineEndB = Dot(x: 0.0, y: 0.0, color: "red")
@@ -38,12 +37,13 @@ final class InputViewModel: ObservableObject {
 		return isConvertable(coordinates: coordinates)
 	}
 	
-	func onSubmit(coordinates: Coordinates, name: String, color: String) {
-		guard let numbercalCords = convert(coordinates: coordinates) else {
+	func onSubmitButton(coordinates cords: Coordinates, name: String, color: String) {
+		guard let numbercalCords = convert(coordinates: cords) else {
 			return
 		}
+		
 		let dot = makeDot(withName: name, color: color, coordinates: numbercalCords)
-		dots.append(dot)
+		objects.append(dot)
 	}
 	
 	func convert(coordinates: Coordinates) -> NumericalCoordinates? {
@@ -58,8 +58,10 @@ final class InputViewModel: ObservableObject {
 		print("adding line")
 	}
 	
-	func onDelete(dot: Dot) {
-		dots.removeFirst(element: dot)
+	func onDelete(object: GeometryObject) {
+		objects.removeFirst(element: object) {
+			$0.id != $1.id
+		}
 	}
 	
 	private func isConvertable(coordinates: Coordinates) -> Bool {

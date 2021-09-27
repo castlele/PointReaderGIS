@@ -5,12 +5,13 @@
 //  Created by Nikita Semenov on 22.09.2021.
 //
 
-extension Array where Element: Equatable {
-	mutating func removeFirst(element: Element) {
+extension Array {
+//	map<T>(_ transform: ((offset: Int, element: Base.Element)) throws -> T) rethrows -> [T]
+	mutating func removeFirst(element: Element, compareBy: @escaping ((Element, Element) -> Bool)) {
 		var result = [Element]()
 		
 		for el in self {
-			if el != element {
+			if compareBy(el, element) {
 				result.append(el)
 				continue
 			}

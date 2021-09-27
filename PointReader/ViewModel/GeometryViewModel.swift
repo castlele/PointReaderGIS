@@ -7,37 +7,6 @@
 
 import Foundation
 
-// MARK: - CartesianConvertable
-protocol CartesianConvertable {
-	var objectOffset: CGFloat { get }
-
-	func convertToCartesian(x: CGFloat) -> CGFloat
-	func convertToCartesian(y: CGFloat) -> CGFloat
-	func determineOffset(x: CGFloat) -> CGFloat
-	func determineOffset(y: CGFloat) -> CGFloat
-}
-
-extension CartesianConvertable {
-	
-	func convertToCartesian(x: CGFloat) -> CGFloat {
-		(-coordinateSpaceHeight / 2 + x) / 10
-	}
-	
-	func convertToCartesian(y: CGFloat) -> CGFloat {
-		(coordinateSpaceHeight / 2 - y) / 10
-	}
-	
-	func determineOffset(x: CGFloat) -> CGFloat {
-		coordinateSpaceHeight / 2 + (x * squareHeight) - objectOffset
-	}
-	
-	func determineOffset(y: CGFloat) -> CGFloat {
-		coordinateSpaceHeight / 2 - (y * squareHeight) - objectOffset
-	}
-}
-
-typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
-
 // MARK: - GeometryViewModel
 final class GeometryViewModel: ObservableObject, CartesianConvertable {
 	
