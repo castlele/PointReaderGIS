@@ -11,11 +11,11 @@ final class Dot: CartesianConvertable, Identifiable {
 	
 	let id = UUID()
 	
-	let name: String
-	let x: CGFloat
-	let y: CGFloat
+	var name: String
+	var x: CGFloat
+	var y: CGFloat
 	
-	let color: String
+	var color: String
 	
 	var correspondingLineEnd: Dot? = nil
 	
@@ -41,7 +41,7 @@ final class Dot: CartesianConvertable, Identifiable {
 extension Dot: Equatable, Hashable {
 	
 	func hash(into hasher: inout Hasher) {
-		hasher.combine(id)
+		hasher.combine("\(name)\(id)\(x)\(y)")
 	}
 	
 	static func == (lhs: Dot, rhs: Dot) -> Bool {

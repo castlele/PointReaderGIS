@@ -46,6 +46,14 @@ final class InputViewModel: ObservableObject {
 		dots.append(dot)
 	}
 	
+	func convert(coordinates: Coordinates) -> NumericalCoordinates? {
+		guard let x = CGFloat(coordinates.x),
+			  let y = CGFloat(coordinates.y) else {
+			return nil
+		}
+		return (x, y)
+	}
+	
 	func onAddLine() {
 		print("adding line")
 	}
@@ -60,14 +68,6 @@ final class InputViewModel: ObservableObject {
 			return false
 		}
 		return true
-	}
-	
-	private func convert(coordinates: Coordinates) -> NumericalCoordinates? {
-		guard let x = CGFloat(coordinates.x),
-			  let y = CGFloat(coordinates.y) else {
-			return nil
-		}
-		return (x, y)
 	}
 	
 	private func makeDot(withName name: String, color: String, coordinates cords: NumericalCoordinates) -> Dot {

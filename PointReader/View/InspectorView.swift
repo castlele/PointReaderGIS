@@ -194,9 +194,7 @@ fileprivate struct ListOfGeometryObjects: View {
 			}
 		}
 	}
-	
-	@State private var selected: Dot? = nil
-	
+		
 	var body: some View {
 		List {
 			ForEach(dots) { dot in

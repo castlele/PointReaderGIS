@@ -37,15 +37,9 @@ fileprivate struct AppView: View {
 					}
 					.keyboardShortcut(KeyEquivalent("C"))
 				}
-				.onHover { isInside in
-					MouseLocation.setUpCursor(to: .inspector, isInside: isInside)
-				}
 			
 			CoordinateSystemView()
 				.frame(width: coordinateSpaceHeight + 1, height: coordinateSpaceHeight + 1)
-				.onHover { isInside in
-					MouseLocation.setUpCursor(to: .coordinateSystem, isInside: isInside)
-				}
 		}
 		.navigationViewStyle(DefaultNavigationViewStyle())
 	}
