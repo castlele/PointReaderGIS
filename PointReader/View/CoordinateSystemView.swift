@@ -70,21 +70,23 @@ struct CoordinateSystemView: View {
 						}
 					}
 					
-					if inputVM.addingMode != .none {
-						GeometryReader { geometry in
-							
-							//MARK: - InputDotCoordinatesView
-							inputVM.inputView
-								.offset(x: geometry.size.width / 2 - 150, y: geometry.size.height * 1/3 )
-						}
-					}
-					
 					GeometryReader { _ in
 						// MARK: - Geometry objects showing
 						ForEach(inputVM.objects, id: \.id) { obj in
 							GeometryViewFactory.makeView(object: obj)
 						}
 					}
+					
+					if inputVM.addingMode != .none {
+						
+						GeometryReader { geometry in
+							
+							//MARK: - Geometry objects creation
+							inputVM.inputView
+								.offset(x: geometry.size.width / 2 - 150, y: geometry.size.height * 1/3 )
+						}
+					}
+					
 				}
 			)
 			// MARK: - Tool bar
