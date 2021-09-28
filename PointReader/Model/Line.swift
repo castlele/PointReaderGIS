@@ -17,7 +17,15 @@ final class Line: GeometryObject {
 	
 	
 	init(name: String, endA a: Dot, endB b: Dot) {
-		self.name = name
+		var lineName = String()
+		
+		if name.isEmpty {
+			lineName = a.name + b.name
+		} else {
+			lineName = name
+		}
+		
+		self.name = lineName
 		self.endA = a
 		self.endB = b
 	}

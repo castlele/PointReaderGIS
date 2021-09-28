@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-extension InputDotView: Equatable {
-	static func == (lhs: InputDotView, rhs: InputDotView) -> Bool {
-		let xExp = lhs.coordinates.x == rhs.coordinates.x
-		let yExp = lhs.coordinates.y == rhs.coordinates.y
-		return xExp && yExp
-	}
+enum ControllsType {
+	case `default`, cancel
 }
 
 struct InputDotView: View {
@@ -20,13 +16,9 @@ struct InputDotView: View {
 	@EnvironmentObject var inputVM: InputViewModel
 	@State var coordinates: Coordinates
 	var text: String
-	var controllsType: ControllsType
+	let controllsType: ControllsType
 	var onSubmit: (() -> Void)?
 	var onCancel: (() -> Void)?
-	
-	enum ControllsType {
-		case `default`, cancel
-	}
 	
 	@State private var name = ""
 	@State private var color = ColorModel.colors[0]
@@ -49,6 +41,7 @@ struct InputDotView: View {
 						}
 					}
 					.labelsHidden()
+					.fixedSize()
 				}
 				
 				TextField("Name", text: $name)
@@ -117,6 +110,7 @@ struct InputDotView: View {
 		.keyboardShortcut(.cancelAction)
 	}
 	
+	// MARK: - Initialization 
 	init(
 		text: String = "Dot settings",
 		coordinates: Coordinates = ("", ""),

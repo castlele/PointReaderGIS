@@ -17,10 +17,6 @@ struct PointReaderApp: App {
 			AppView()
 				.frame(maxWidth: NSScreen.main?.frame.width, minHeight: coordinateSpaceHeight + 5)
 				.environmentObject(inputVM)
-				.onAppear {
-					let line = Line(endA: Dot(name: "A", x: 0, y: 0, color: "red"), endB: Dot(name: "B", x: 0, y: 0, color: "blue"))
-					inputVM.objects.append(line)
-				}
 		}
 		.commands {
 			SidebarCommands()

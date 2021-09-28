@@ -13,6 +13,10 @@ struct GeometryViewFactory {
 		switch obj {
 			case let dot as Dot:
 				return AnyView(DotView(dot))
+				
+			case let line as Line:
+				return AnyView(LineView(line))
+				
 			default:
 				return AnyView(EmptyView())
 		}

@@ -90,14 +90,24 @@ struct CoordinateSystemView: View {
 			// MARK: - Tool bar
 			.toolbar {
 				Button(action: {
-					inputVM.addingMode = .dot
+					inputVM.addingMode = inputVM.addingMode == .dot ? .none : .dot
 					
 				}, label: {
 					Image(systemName: "dot.squareshape.split.2x2")
-						.foregroundColor(inputVM.addingMode != .none ? .accentColor : nil)
+						.foregroundColor(inputVM.addingMode == .dot ? .accentColor : nil)
 						.help("Add dot")
 				})
 				.keyboardShortcut("d", modifiers: [.shift, .option])
+				
+				Button(action: {
+					inputVM.addingMode = inputVM.addingMode == .line ? .none : .line
+					
+				}, label: {
+					Image(systemName: "arrow.up.and.down.square")
+						.foregroundColor(inputVM.addingMode == .line ? .accentColor : nil)
+						.help("Add line")
+				})
+				.keyboardShortcut("l", modifiers: [.shift, .option])
 			}
 		}
 		// MARK: - Tap to add an geometry object
@@ -112,6 +122,14 @@ struct CoordinateSystemView: View {
 						break
 					case .dot:
 						inputObjectType = .dot(coordinates: $geometryVM.lastTapped) {
+							inputVM.addingMode = .none
+							inputVM.inputView = AnyView(EmptyView())
+						} onCancel: {
+							inputVM.addingMode = .none
+							inputVM.inputView = AnyView(EmptyView())
+						}
+					case .line:
+						inputObjectType = .line(coordinates: $geometryVM.lastTapped) {
 							inputVM.addingMode = .none
 							inputVM.inputView = AnyView(EmptyView())
 						} onCancel: {

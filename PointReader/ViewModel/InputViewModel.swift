@@ -11,7 +11,7 @@ import SwiftUI
 final class InputViewModel: ObservableObject {
 	
 	enum AddingMode {
-		case none, dot
+		case none, dot, line
 	}
 	
 	@Published var inputView = AnyView(EmptyView())
@@ -35,9 +35,24 @@ final class InputViewModel: ObservableObject {
 		}
 		
 		let attributs: GeometryObjectFactory.Attributes = .dot(name: name, color: color, coordinates: numbercalCords)
-		let dot = GeometryObjectFactory.shared.makeObject(withAttributes: attributs)
+			let dot = GeometryObjectFactory.shared.makeObject(withAttributes: attributs)
 		
 		objects.append(dot)
+	}
+	
+	func onSubmitLine(endA a: Coordinates, endB b: Coordinates, name: String, color: String) {
+		guard let numACords = convert(coordinates: a) else { return }
+		guard let numBCords = convert(coordinates: b) else { return }
+		
+		let endAAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: numACords)
+		let endBAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: numBCords)
+		let endA = GeometryObjectFactory.shared.makeObject(withAttributes: endAAttr) as! Dot
+		let endB = GeometryObjectFactory.shared.makeObject(withAttributes: endBAttr) as! Dot
+		
+		let lineAttr: GeometryObjectFactory.Attributes = .line(name: name, endA: endA, endB: endB)
+		let line = GeometryObjectFactory.shared.makeObject(withAttributes: lineAttr)
+		
+		objects.append(line)
 	}
 	
 	func convert(coordinates: Coordinates) -> NumericalCoordinates? {
@@ -46,10 +61,6 @@ final class InputViewModel: ObservableObject {
 			return nil
 		}
 		return (x, y)
-	}
-	
-	func onAddLine() {
-		print("adding line")
 	}
 	
 	func onDelete(object: GeometryObject) {
