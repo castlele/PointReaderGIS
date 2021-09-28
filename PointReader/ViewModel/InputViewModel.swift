@@ -55,6 +55,40 @@ final class InputViewModel: ObservableObject {
 		objects.append(line)
 	}
 	
+	func tapToAddGeometryObject(lastTapped: Binding<CGPoint>) {
+		if addingMode != .none {
+			
+			var inputObjectType: InputViewFactory.InputObjectType? = nil
+			
+			switch addingMode {
+				case .none:
+					break
+				case .dot:
+					inputObjectType = .dot(coordinates: lastTapped) {
+						self.addingMode = .none
+						self.inputView = AnyView(EmptyView())
+					} onCancel: {
+						self.addingMode = .none
+						self.inputView = AnyView(EmptyView())
+					}
+				case .line:
+					inputObjectType = .line(coordinates: lastTapped) {
+						self.addingMode = .none
+						self.inputView = AnyView(EmptyView())
+					} onCancel: {
+						self.addingMode = .none
+						self.inputView = AnyView(EmptyView())
+					}
+			}
+			
+			guard let inputObjectType = inputObjectType else {
+				return
+			}
+			
+			inputView = InputViewFactory.makeView(type: inputObjectType) as! AnyView
+		}
+	}
+	
 	func convert(coordinates: Coordinates) -> NumericalCoordinates? {
 		guard let x = CGFloat(coordinates.x),
 			  let y = CGFloat(coordinates.y) else {

@@ -112,38 +112,8 @@ struct CoordinateSystemView: View {
 		}
 		// MARK: - Tap to add an geometry object
 		.onTapGesture {
-			if inputVM.addingMode != .none {
-				geometryVM.setLastTapped()
-				
-				var inputObjectType: InputViewFactory.InputObjectType? = nil
-				
-				switch inputVM.addingMode {
-					case .none:
-						break
-					case .dot:
-						inputObjectType = .dot(coordinates: $geometryVM.lastTapped) {
-							inputVM.addingMode = .none
-							inputVM.inputView = AnyView(EmptyView())
-						} onCancel: {
-							inputVM.addingMode = .none
-							inputVM.inputView = AnyView(EmptyView())
-						}
-					case .line:
-						inputObjectType = .line(coordinates: $geometryVM.lastTapped) {
-							inputVM.addingMode = .none
-							inputVM.inputView = AnyView(EmptyView())
-						} onCancel: {
-							inputVM.addingMode = .none
-							inputVM.inputView = AnyView(EmptyView())
-						}
-				}
-				
-				guard let inputObjectType = inputObjectType else {
-					return
-				}
-				
-				inputVM.inputView = InputViewFactory.makeView(type: inputObjectType) as! AnyView
-			}
+			geometryVM.setLastTapped()
+			inputVM.tapToAddGeometryObject(lastTapped: $geometryVM.lastTapped)
 		}
     }
 }
