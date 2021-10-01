@@ -15,7 +15,7 @@ struct PointReaderApp: App {
     var body: some Scene {
 		WindowGroup {
 			AppView()
-				.frame(maxWidth: NSScreen.main?.frame.width, minHeight: coordinateSpaceHeight + 5)
+				.frame(maxWidth: .infinity, minHeight: coordinateSpaceHeight + 5, maxHeight: .infinity)
 				.environmentObject(inputVM)
 		}
 		.commands {
