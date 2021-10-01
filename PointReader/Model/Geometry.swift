@@ -12,6 +12,7 @@ typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
 
 protocol GeometryObject {
 	var id: UUID { get }
+	var isSelected: Bool { get set }
 }
 
 // MARK: - CartesianConvertable

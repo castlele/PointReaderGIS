@@ -10,6 +10,7 @@ import Foundation
 final class Line: GeometryObject {
 	
 	let id = UUID()
+	var isSelected = false
 	
 	var name: String
 	var endA: Dot

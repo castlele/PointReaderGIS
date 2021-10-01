@@ -98,9 +98,14 @@ final class InputViewModel: ObservableObject {
 	}
 	
 	func onDelete(object: GeometryObject) {
-		objects.removeFirst(element: object) {
-			$0.id != $1.id
-		}
+		objects.removeFirst(element: object, compareBy: compare)
+	}
+	
+	func selectObject(_ obj: GeometryObject) {
+		var object = objects.popFirst(element: obj, compareBy: compare)
+		object?.isSelected = !obj.isSelected
+		guard let object = object else { return }
+		objects.append(object)
 	}
 	
 	private func isConvertable(coordinates: Coordinates) -> Bool {
@@ -109,5 +114,9 @@ final class InputViewModel: ObservableObject {
 			return false
 		}
 		return true
+	}
+	
+	private func compare(_ obj1: GeometryObject, _ obj2: GeometryObject) -> Bool {
+		obj1.id == obj2.id
 	}
 }

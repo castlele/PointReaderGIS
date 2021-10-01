@@ -31,6 +31,7 @@
 		7B9882262701B4C600139A63 /* InputViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9882252701B4C600139A63 /* InputViewFactory.swift */; };
 		7B9882282701BF0000139A63 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9882272701BF0000139A63 /* CGFloat.swift */; };
 		7B98822A2701C0D100139A63 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9882292701C0D100139A63 /* Line.swift */; };
+		7BAEC48627072AF60033F496 /* ListOfGeometryObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEC48527072AF60033F496 /* ListOfGeometryObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		7B9882252701B4C600139A63 /* InputViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewFactory.swift; sourceTree = "<group>"; };
 		7B9882272701BF0000139A63 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		7B9882292701C0D100139A63 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		7BAEC48527072AF60033F496 /* ListOfGeometryObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfGeometryObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				7B98821B2701B01A00139A63 /* GeometryObjects */,
 				7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */,
 				7B09387326F7110C0059CD3D /* InspectorView.swift */,
+				7BAEC48527072AF60033F496 /* ListOfGeometryObjects.swift */,
 				7B098DBE26FBB891002BAC6B /* MouseLocationTracker.swift */,
 			);
 			path = View;
@@ -372,6 +375,7 @@
 				7B9882242701B28900139A63 /* InputLineView.swift in Sources */,
 				7B9882222701B22500139A63 /* InputDotView.swift in Sources */,
 				7B98821A2701AD7800139A63 /* GeometryObjectFactory.swift in Sources */,
+				7BAEC48627072AF60033F496 /* ListOfGeometryObjects.swift in Sources */,
 				7B098DBF26FBB891002BAC6B /* MouseLocationTracker.swift in Sources */,
 				7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */,
 				7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */,

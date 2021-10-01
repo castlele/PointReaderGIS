@@ -10,6 +10,7 @@ import Foundation
 final class Dot: GeometryObject {
 	
 	let id = UUID()
+	var isSelected = false
 	
 	var name: String
 	var x: CGFloat
