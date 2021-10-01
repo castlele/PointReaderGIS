@@ -16,6 +16,7 @@ final class InputViewModel: ObservableObject {
 	
 	@Published var inputView = AnyView(EmptyView())
 	@Published var objects: [GeometryObject] = []
+	@Published var selectedObjects: [GeometryObject] = []
 	@Published var addingMode: AddingMode = .none
 	
 	func isCoordinatesValid(_ coordinates: Coordinates) -> Bool {
@@ -44,15 +45,7 @@ final class InputViewModel: ObservableObject {
 		guard let numACords = convert(coordinates: a) else { return }
 		guard let numBCords = convert(coordinates: b) else { return }
 		
-		let endAAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: numACords)
-		let endBAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: numBCords)
-		let endA = GeometryObjectFactory.shared.makeObject(withAttributes: endAAttr) as! Dot
-		let endB = GeometryObjectFactory.shared.makeObject(withAttributes: endBAttr) as! Dot
-		
-		let lineAttr: GeometryObjectFactory.Attributes = .line(name: name, endA: endA, endB: endB)
-		let line = GeometryObjectFactory.shared.makeObject(withAttributes: lineAttr)
-		
-		objects.append(line)
+		createLine(numACords, numBCords, name: name, color: color)
 	}
 	
 	func tapToAddGeometryObject(lastTapped: Binding<CGPoint>) {
@@ -101,11 +94,67 @@ final class InputViewModel: ObservableObject {
 		objects.removeFirst(element: object, compareBy: compare)
 	}
 	
+	func onDelete(objects: GeometryObject...) {
+		for obj in objects {
+			self.objects.removeFirst(element: obj, compareBy: compare)
+		}
+	}
+	
 	func selectObject(_ obj: GeometryObject) {
-		var object = objects.popFirst(element: obj, compareBy: compare)
-		object?.isSelected = !obj.isSelected
-		guard let object = object else { return }
-		objects.append(object)
+		guard let index = objects.firstIndex(where: { compare($0, obj) }) else {
+			return
+		}
+		
+		objects[index].isSelected = !obj.isSelected
+		
+		if objects[index].isSelected {
+			selectedObjects.append(objects[index])
+		} else {
+			selectedObjects.removeFirst(element: objects[index], compareBy: compare)
+		}
+	}
+	
+	func determineMergingType() -> String {
+		if let _ = onCreatingLine() {
+			return "Create a line"
+		}
+		
+		return ""
+	}
+	
+	func merge() {
+		if let (endA, endB) = onCreatingLine() {
+			createLine(endA.getNumericalCords(), endB.getNumericalCords(), color: endA.color)
+			onDelete(objects: endA, endB)
+			selectedObjects.removeAll()
+		}
+	}
+	
+	private func createLine(
+		_ a: NumericalCoordinates,
+		_ b: NumericalCoordinates,
+		name: String = "",
+		color: String = "red"
+	) {
+		let endAAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: a)
+		let endBAttr: GeometryObjectFactory.Attributes = .dot(name: "", color: color, coordinates: b)
+		let endA = GeometryObjectFactory.shared.makeObject(withAttributes: endAAttr) as! Dot
+		let endB = GeometryObjectFactory.shared.makeObject(withAttributes: endBAttr) as! Dot
+		
+		let lineAttr: GeometryObjectFactory.Attributes = .line(name: name, endA: endA, endB: endB)
+		let line = GeometryObjectFactory.shared.makeObject(withAttributes: lineAttr)
+		
+		objects.append(line)
+	}
+	
+	private func onCreatingLine() -> (Dot, Dot)? {
+		guard selectedObjects.count == 2,
+			  let dots = (selectedObjects[0], selectedObjects[1]) as? (Dot, Dot)
+		else {
+			return nil
+		}
+		
+		return dots
 	}
 	
 	private func isConvertable(coordinates: Coordinates) -> Bool {

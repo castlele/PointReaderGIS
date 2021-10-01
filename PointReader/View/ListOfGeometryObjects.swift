@@ -65,52 +65,80 @@ struct ListOfGeometryObjects: View {
 	
 	// MARK: - List of Geometry objects Body
 	var body: some View {
-		List {
-			ForEach(inputVM.objects, id: \.id) { obj in
-				Group {
-					switch obj {
-						case let dot as Dot:
-							DotDescriptionRow(dot: dot)
-							
-							
-						case let line as Line:
-							LineDescriptionRow(line: line)
-							
-						default:
-							EmptyView()
-					}
-				}
-				.overlay(
+		VStack {
+			List {
+				ForEach(inputVM.objects, id: \.id) { obj in
 					Group {
-						if obj.isSelected {
-							Image(systemName: "checkmark.circle.fill")
-								.foregroundColor(.green)
-						} else {
-							EmptyView()
+						switch obj {
+							case let dot as Dot:
+								DotDescriptionRow(dot: dot)
+								
+								
+							case let line as Line:
+								LineDescriptionRow(line: line)
+								
+							default:
+								EmptyView()
+						}
+					}
+					.padding(.horizontal, 2)
+					.overlay(
+						Group {
+							if obj.isSelected {
+								Image(systemName: "checkmark.circle.fill")
+									.resizable()
+									.scaledToFit()
+									.frame(width: 20, height: 20)
+									.foregroundColor(.green)
+							} else {
+								EmptyView()
+							}
+						}
+						
+						, alignment: .topTrailing
+					)
+					.contextMenu {
+						Button {
+							inputVM.selectObject(obj)
+						} label: {
+							Text(obj.isSelected ? "Deselect" : "Select")
+						}
+						
+						Button {
+							inputVM.onDelete(object: obj)
+						} label: {
+							Text("Delete")
 						}
 					}
 					
-					, alignment: .topTrailing
-				)
-				.contextMenu {
-					Button {
-						inputVM.selectObject(obj)
-					} label: {
-						Text("Select")
-					}
-					
-					Button {
-						inputVM.onDelete(object: obj)
-					} label: {
-						Text("Delete")
-					}
+					Divider()
 				}
-				.padding(.horizontal, 2)
-				.clipShape(RoundedRectangle(cornerRadius: 8))
-				
-				Divider()
 			}
+			
+			Rectangle()
+				.fill(Color.primary.opacity(0.5))
+				.frame(height: 50)
+				.clipShape(RoundedCorner(cornerHeight: 8))
+				.overlay(
+					Button {
+						inputVM.merge()
+					} label: {
+						Text(inputVM.determineMergingType())
+					}
+					.opacity(inputVM.determineMergingType().isEmpty ? 0 : 1)
+				)
 		}
+	}
+}
+
+fileprivate struct RoundedCorner: Shape {
+	var cornerWidth: CGFloat = 0
+	var cornerHeight: CGFloat = 0
+	
+	func path(in rect: CGRect) -> Path {
+		let path = CGMutablePath(roundedRect: rect, cornerWidth: cornerWidth, cornerHeight: cornerHeight, transform: nil)
+		return Path(path)
+		
 	}
 }
 

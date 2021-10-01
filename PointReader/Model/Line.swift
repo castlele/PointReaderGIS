@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Line: GeometryObject {
+struct Line: GeometryObject {
 	
 	let id = UUID()
 	var isSelected = false
@@ -31,7 +31,7 @@ final class Line: GeometryObject {
 		self.endB = b
 	}
 	
-	convenience init(endA a: Dot, endB b: Dot) {
+	init(endA a: Dot, endB b: Dot) {
 		let name = a.name + b.name
 		self.init(name: name, endA: a, endB: b)
 	}

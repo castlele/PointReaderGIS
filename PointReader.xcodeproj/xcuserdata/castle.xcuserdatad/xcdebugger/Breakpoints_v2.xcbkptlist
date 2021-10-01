@@ -3,4 +3,94 @@
    uuid = "44F28DEA-B030-4F37-AAB0-C7A99AC41A06"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "25BCC242-3A4A-4DB8-994F-F406A8D0930E"
+            shouldBeEnabled = "No"
+            nameForDebugger = "dot-deinit"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            symbolName = "Dot.deinit">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Sound">
+                  <ActionContent
+                     soundName = "Funk">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "25BCC242-3A4A-4DB8-994F-F406A8D0930E - e0f379d88fce92da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PointReader.Dot.deinit"
+                  moduleName = "PointReader"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/castle/Documents/Projects/PointReader/PointReader/Model/Dot.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "D2A69FE6-25CB-46DA-9E20-ED93EA8FE64A"
+            shouldBeEnabled = "No"
+            nameForDebugger = "dot-init"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            symbolName = "Dot.init"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Sound">
+                  <ActionContent
+                     soundName = "Glass">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "D2A69FE6-25CB-46DA-9E20-ED93EA8FE64A - 6401f7fd20136e01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PointReader.Dot.init(name: Swift.String, x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat, color: Swift.String) -&gt; PointReader.Dot"
+                  moduleName = "PointReader"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/castle/Documents/Projects/PointReader/PointReader/Model/Dot.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "182">
+               </Location>
+               <Location
+                  uuid = "D2A69FE6-25CB-46DA-9E20-ED93EA8FE64A - ee6c3d62110f1a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PointReader.Dot.init(name: Swift.String, coordinates: (x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat), color: Swift.String) -&gt; PointReader.Dot"
+                  moduleName = "PointReader"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/castle/Documents/Projects/PointReader/PointReader/Model/Dot.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "203">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -29,9 +29,9 @@ struct InspectorView: View {
 			Spacer()
 			
 			ListOfGeometryObjects()
-				.frame(minHeight: 500)
+				.frame(minHeight: 400)
 				.background(Color.white)
-				.clipShape(RoundedRectangle(cornerRadius: 10))
+				.clipShape(RoundedRectangle(cornerRadius: 8))
 		}
     }
 }
