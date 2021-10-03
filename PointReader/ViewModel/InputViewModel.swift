@@ -117,6 +117,8 @@ final class InputViewModel: ObservableObject {
 	func determineMergingType() -> String {
 		if let _ = onCreatingLine() {
 			return "Create a line"
+		} else if let _ = onCreatingPolygon() {
+			return "Create a polygon"
 		}
 		
 		return ""
@@ -126,6 +128,12 @@ final class InputViewModel: ObservableObject {
 		if let (endA, endB) = onCreatingLine() {
 			createLine(endA.getNumericalCords(), endB.getNumericalCords(), color: endA.color)
 			onDelete(objects: endA, endB)
+			selectedObjects.removeAll()
+		} else if let lines = onCreatingPolygon() {
+			createPolygon(name: "", lines: lines)
+			for line in lines {
+				onDelete(object: line)
+			}
 			selectedObjects.removeAll()
 		}
 	}
@@ -155,6 +163,37 @@ final class InputViewModel: ObservableObject {
 		}
 		
 		return dots
+	}
+	
+	private func onCreatingPolygon() -> [Line]? {
+		guard selectedObjects.count >= 3 else {
+			return nil
+		}
+		
+		var isAllLines = true
+		for obj in selectedObjects {
+			isAllLines = isAllLines && isLine(object: obj)
+			if !isAllLines {
+				return nil
+			}
+		}
+		
+		if let lines = selectedObjects as? [Line] {
+			return lines
+		}
+		return nil
+	}
+	
+	private func createPolygon(name: String, lines: [Line]) {
+		let polygon = GeometryObjectFactory.shared.makeObject(withAttributes: .polygon(name: name, lines: lines))
+		objects.append(polygon)
+	}
+	
+	private func isLine(object: GeometryObject) -> Bool {
+		if let _ = object as? Line {
+			return true
+		}
+		return false
 	}
 	
 	private func isConvertable(coordinates: Coordinates) -> Bool {

@@ -32,9 +32,6 @@ struct Line: GeometryObject {
 	}
 	
 	init(endA a: Dot, endB b: Dot) {
-		let name = a.name + b.name
-		self.init(name: name, endA: a, endB: b)
+		self.init(name: "", endA: a, endB: b)
 	}
 }
-
-

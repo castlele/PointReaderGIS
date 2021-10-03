@@ -78,7 +78,7 @@ struct CoordinateSystemView: View {
 						
 					}
 				)
-			// MARK: - Tool bar
+				// MARK: - Tool bar
 				.toolbar {
 					Button(action: {
 						inputVM.addingMode = inputVM.addingMode == .dot ? .none : .dot

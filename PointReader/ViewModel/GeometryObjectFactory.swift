@@ -14,6 +14,7 @@ struct GeometryObjectFactory {
 	enum Attributes {
 		case dot(name: String, color: String, coordinates: NumericalCoordinates)
 		case line(name: String, endA: Dot, endB: Dot)
+		case polygon(name: String, lines: [Line])
 	}
 	
 	func makeObject(withAttributes attr: Attributes) -> GeometryObject {
@@ -23,6 +24,9 @@ struct GeometryObjectFactory {
 				
 			case let .line(name, endA, endB):
 				return makeLine(withName: name, endA: endA, endB: endB)
+				
+			case let .polygon(name, lines):
+				return makePolygon(withName: name, lines: lines)
 		}
 	}
 	
@@ -34,5 +38,10 @@ struct GeometryObjectFactory {
 	private func makeLine(withName name: String, endA: Dot, endB: Dot) -> Line {
 		let line = Line(name: name, endA: endA, endB: endB)
 		return line
+	}
+	
+	private func makePolygon(withName name: String, lines: [Line]) -> Polygon {
+		let polygon = Polygon(name: name, lines: lines)
+		return polygon
 	}
 }

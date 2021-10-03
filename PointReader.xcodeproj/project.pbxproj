@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0264EF2709A72B00F38D4A /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0264EE2709A72B00F38D4A /* Polygon.swift */; };
+		7B0264F12709A9AD00F38D4A /* PolygonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0264F02709A9AD00F38D4A /* PolygonView.swift */; };
 		7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09384726F70EBB0059CD3D /* PointReaderApp.swift */; };
 		7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */; };
 		7B09384C26F70EBE0059CD3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B09384B26F70EBE0059CD3D /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B0264EE2709A72B00F38D4A /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		7B0264F02709A9AD00F38D4A /* PolygonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonView.swift; sourceTree = "<group>"; };
 		7B09384426F70EBB0059CD3D /* PointReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B09384726F70EBB0059CD3D /* PointReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointReaderApp.swift; sourceTree = "<group>"; };
 		7B09384926F70EBB0059CD3D /* CoordinateSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateSystemView.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				7B9882172701A50500139A63 /* Geometry.swift */,
 				7B0A00D126F8780B00A4DD4C /* Dot.swift */,
 				7B9882292701C0D100139A63 /* Line.swift */,
+				7B0264EE2709A72B00F38D4A /* Polygon.swift */,
 				7B0A00D426F8788500A4DD4C /* Color.swift */,
 			);
 			path = Model;
@@ -220,6 +225,7 @@
 				7B98821E2701B11800139A63 /* GeometryViewFactory.swift */,
 				7B98821C2701B03000139A63 /* DotView.swift */,
 				7B6FC05C2702581900D6C815 /* LineView.swift */,
+				7B0264F02709A9AD00F38D4A /* PolygonView.swift */,
 			);
 			path = GeometryObjects;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 				7BAEC48627072AF60033F496 /* ListOfGeometryObjects.swift in Sources */,
 				7B098DBF26FBB891002BAC6B /* MouseLocationTracker.swift in Sources */,
 				7B09384A26F70EBB0059CD3D /* CoordinateSystemView.swift in Sources */,
+				7B0264F12709A9AD00F38D4A /* PolygonView.swift in Sources */,
 				7B09384826F70EBB0059CD3D /* PointReaderApp.swift in Sources */,
 				7B6FC05D2702581A00D6C815 /* LineView.swift in Sources */,
 				7B9882262701B4C600139A63 /* InputViewFactory.swift in Sources */,
@@ -383,6 +390,7 @@
 				7B0A00D026F877F400A4DD4C /* InputViewModel.swift in Sources */,
 				7B0A00D526F8788500A4DD4C /* Color.swift in Sources */,
 				7B98822A2701C0D100139A63 /* Line.swift in Sources */,
+				7B0264EF2709A72B00F38D4A /* Polygon.swift in Sources */,
 				7B98821D2701B03000139A63 /* DotView.swift in Sources */,
 				7B9882182701A50500139A63 /* Geometry.swift in Sources */,
 				7B98821F2701B11800139A63 /* GeometryViewFactory.swift in Sources */,

@@ -17,6 +17,9 @@ struct GeometryViewFactory {
 			case let line as Line:
 				return AnyView(LineView(line))
 				
+			case let polygon as Polygon:
+				return AnyView(PolygonView(polygon))
+				
 			default:
 				return AnyView(EmptyView())
 		}
