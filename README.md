@@ -5,5 +5,3 @@ Study project. The app allows to add dots, lines, polygons to cartesian coordina
 ![Starter page](https://media.giphy.com/media/nWzJ3AcYc4UvN8OhX7/giphy.gif)
 
 ![Starter page](https://media.giphy.com/media/EaPHAjjtUTKGkSO9Pv/giphy.gif)
-
-![Starter page](https://media.giphy.com/media/SCn7SVjaU45HHS3sOX/giphy.gif)
