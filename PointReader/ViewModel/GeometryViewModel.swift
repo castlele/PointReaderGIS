@@ -16,7 +16,7 @@ final class GeometryViewModel: ObservableObject, CartesianConvertable {
 	@Published var lastTapped = CGPoint(x: 0, y: 0)
 	
 	func convertToCartesian(point: CGPoint) {
-		DispatchQueue.global(qos: .background).async { [self] in
+		DispatchQueue.global(qos: .utility).async { [self] in
 			let x = convertToCartesian(x: point.x)
 			let y = convertToCartesian(y: point.y)
 			let (roundedX, roundedY) = roundCoordinates(coordinates: (x, y))

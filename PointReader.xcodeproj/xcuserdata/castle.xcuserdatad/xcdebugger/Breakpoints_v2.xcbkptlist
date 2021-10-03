@@ -75,11 +75,11 @@
                   offsetFromSymbolStart = "182">
                </Location>
                <Location
-                  uuid = "D2A69FE6-25CB-46DA-9E20-ED93EA8FE64A - ee6c3d62110f1a5"
-                  shouldBeEnabled = "Yes"
+                  uuid = "D2A69FE6-25CB-46DA-9E20-ED93EA8FE64A - c6ab7c32a848e55b"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "PointReader.Dot.init(name: Swift.String, coordinates: (x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat), color: Swift.String) -&gt; PointReader.Dot"
+                  symbolName = "PointReader.Dot.init(name: Swift.String, coordinates: (x: Swift.Double, y: Swift.Double), color: Swift.String) -&gt; PointReader.Dot"
                   moduleName = "PointReader"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/castle/Documents/Projects/PointReader/PointReader/Model/Dot.swift"
@@ -87,7 +87,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
                   endingLineNumber = "29"
-                  offsetFromSymbolStart = "203">
+                  offsetFromSymbolStart = "215">
                </Location>
             </Locations>
          </BreakpointContent>

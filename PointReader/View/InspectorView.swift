@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - InspectorView
-struct InspectorView: View {
+struct InspectorView: View, Equatable {
 	
 	@EnvironmentObject var inputVM: InputViewModel
 	
@@ -34,6 +34,10 @@ struct InspectorView: View {
 				.clipShape(RoundedRectangle(cornerRadius: 8))
 		}
     }
+	
+	static func == (lhs: InspectorView, rhs: InspectorView) -> Bool {
+		lhs.inputVM.objects.map { $0.id } == rhs.inputVM.objects.map { $0.id }
+	}
 }
 
 struct InputBarView_Previews: PreviewProvider {

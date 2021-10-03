@@ -8,7 +8,7 @@
 import Foundation
 
 typealias Coordinates = (x: String, y: String)
-typealias NumericalCoordinates = (x: CGFloat, y: CGFloat)
+typealias NumericalCoordinates = (x: Double, y: Double)
 
 protocol GeometryObject {
 	var id: UUID { get }

@@ -83,8 +83,8 @@ final class InputViewModel: ObservableObject {
 	}
 	
 	func convert(coordinates: Coordinates) -> NumericalCoordinates? {
-		guard let x = CGFloat(coordinates.x),
-			  let y = CGFloat(coordinates.y) else {
+		guard let x = Double(coordinates.x),
+			  let y = Double(coordinates.y) else {
 			return nil
 		}
 		return (x, y)

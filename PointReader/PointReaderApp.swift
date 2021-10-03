@@ -29,6 +29,7 @@ fileprivate struct AppView: View {
 	var body: some View {
 		NavigationView {
 			InspectorView()
+				.equatable()
 				.frame(minWidth: 300, maxWidth: NSScreen.main!.frame.width - coordinateSpaceHeight + 1)
 				.toolbar {
 					Button(action: toggleSidebar) {
